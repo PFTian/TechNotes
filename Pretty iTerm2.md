@@ -82,7 +82,7 @@ For `Oh My Zsh`, you can install [zsh-autosuggestions](https://github.com/zsh-us
     ```sh
     plugins=(git zsh-autosuggestions)
     ```
-___Note:___ git is the default plugin that has been added by Oh My Zsh
+    ***Note:*** git is the default plugin that has been added by Oh My Zsh
 
 3. Start a new terminal session.
 
