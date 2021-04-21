@@ -117,6 +117,5 @@ Open the VS Code Settings (Cmd + ,), locating the font part and edit `settings.j
 
 Add `"terminal.integrated.fontFamily": "MesloLGS NF"` and save the file.
 
-
 ## 7. Main reference
 [iTerm2 + Oh My Zsh + Solarized color scheme + Source Code Pro Powerline + Font Awesome + [Powerlevel10k] - (macOS)](https://gist.github.com/kevin-smets/8568070)
