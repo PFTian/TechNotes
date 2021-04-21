@@ -66,3 +66,57 @@ p10k configure
 to reconfigure your Powerlevel10k Settings.
 
 
+## 4.Zsh Auto Suggestion
+
+For `Oh My Zsh`, you can install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh) plugin. 
+
+
+1. Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`)
+
+    ```sh
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    ```
+
+2. Add the plugin to the list of plugins for Oh My Zsh to load (inside `~/.zshrc`):
+
+    ```sh
+    plugins=(git zsh-autosuggestions)
+    ```
+___Note:___ git is the default plugin that has been added by Oh My Zsh
+
+3. Start a new terminal session.
+
+## 5. Syntax highlighting
+
+Install the zsh-syntax-highlighting
+
+Run the below command:
+
+```zsh
+brew install zsh-syntax-highlighting
+```
+
+After the installation, add the following line
+
+```zsh
+ource /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+
+To the end of the `~/.zshrc` file and then run:
+
+```zsh
+source ~/.zshrc
+```
+
+## 6. Visual Studio Code Config
+After you install the Powerlevel10k, it will ask you to install the font `MesloLGS NF`.
+
+The new installed font (`MesloLGS NF`) will mess up the VS Code terminal.
+
+Open the VS Code Settings (Cmd + ,), locating the font part and edit `settings.json`. 
+
+Add `"terminal.integrated.fontFamily": "MesloLGS NF"` and save the file.
+
+
+## 7. Main reference
+[iTerm2 + Oh My Zsh + Solarized color scheme + Source Code Pro Powerline + Font Awesome + [Powerlevel10k] - (macOS)](https://gist.github.com/kevin-smets/8568070)
