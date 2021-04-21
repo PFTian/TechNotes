@@ -66,7 +66,7 @@ p10k configure
 to reconfigure your Powerlevel10k Settings.
 
 
-## 4.Zsh Auto Suggestion
+## 4. Zsh Auto Suggestion
 
 For `Oh My Zsh`, you can install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh) plugin. 
 
@@ -99,7 +99,7 @@ brew install zsh-syntax-highlighting
 After the installation, add the following line
 
 ```zsh
-ource /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ```
 
 To the end of the `~/.zshrc` file and then run:
