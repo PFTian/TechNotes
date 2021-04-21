@@ -18,6 +18,8 @@ iTerm2 → Preferences... → Profiles → Colors → Color Presets...
 
 You can also find the [iterm2 color schemes](https://iterm2colorschemes.com) online and load the theme that you like
 
+***I personally use AdventureTime as my color theme***
+
 ### Configure Transparency and Blur
 
 The background transparency and blur can be set at:
