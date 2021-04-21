@@ -26,6 +26,12 @@ sudo apt-get upgrade
 
 Or you can also install the old Gitlab version on your new server
 
+## Install a New Gitlab
+
+Install a new Gitlab on your new server. 
+
+You can read [this article]() to install a new gitlab server
+
 ## Backup Gitlab on the old server
 
 ### 1. Create backup
