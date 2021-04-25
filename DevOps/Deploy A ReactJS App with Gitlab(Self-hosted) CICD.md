@@ -101,9 +101,10 @@ Login to your Gitlab and create a new project (I will name it bright-future)
     ```
     In the console prompt, press `a` to run all tests, if everything goes well, we will see
 
-    
+    ![image](https://user-images.githubusercontent.com/10986601/116003979-41a7f000-a633-11eb-95bd-e1d7a69797e2.png)
 
-4. Push the project to your Gitlab repository
+
+5. Push the project to your Gitlab repository
     ```bash
     git init
     git remote add origin https://gitlab.yourdomain.cn/root/bright-future.git
@@ -111,5 +112,5 @@ Login to your Gitlab and create a new project (I will name it bright-future)
     git commit -m "Initial commit"
     git push -u origin master
     ```
-5. Refresh the Gitlab repository, you will see your `Bright Future` has been listed there.
+6. Refresh the Gitlab repository, you will see your `Bright Future` has been listed there.
     ![image](https://user-images.githubusercontent.com/10986601/116003800-2dafbe80-a632-11eb-9136-411848b6ce11.png)
