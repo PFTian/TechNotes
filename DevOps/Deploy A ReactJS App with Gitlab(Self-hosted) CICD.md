@@ -138,9 +138,9 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
 
     # Prepare the container for building React
     RUN npm install
-    RUN npm react-scripts@3.0.1 -g
+    RUN npm install react-scripts@3.0.1 -g
     # Build your application
-    RUN npm build
+    RUN npm run build
 
     # Nginx stage: deploy build/compiled app to Nginx.
     #Prepare nginx
@@ -187,3 +187,23 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
 
     ![image](https://user-images.githubusercontent.com/10986601/116006377-83d62f00-a63d-11eb-9f0b-9e7ceb151e55.png)
 
+    Now open the terminal and make sure you are at the root of your project folder and run
+
+    ```
+    docker build -t bright-future:1.0 .  
+    ```
+
+    Docker will output lots of log messages, and if we create our image successfully, we can check the image by using
+
+    ```
+    docker images
+    ```
+
+    if you see the below line, we can verify that we have created a nginx dcoker with out application
+
+    Fire up a docker container based on the image we created
+    ```
+    docker run -d --rm --name bright-future -p 5000:80 -t bright-future:1.0
+    ```
+
+    Now you can go to http://localhost:5000 and see our dockerlised app running.
