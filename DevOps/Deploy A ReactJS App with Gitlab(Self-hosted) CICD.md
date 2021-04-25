@@ -69,6 +69,15 @@ Simply you just need to do
 
 Login to your Gitlab and create a new project (I will name it bright-future)
 
+1. Click `New project`
+![image](https://user-images.githubusercontent.com/10986601/116002743-bd9f3980-a62d-11eb-9894-92f2c62dd49c.png)
+
+2. Choose `Create blank project`
+![image](https://user-images.githubusercontent.com/10986601/116002892-4f0eab80-a62e-11eb-8182-b874f968df9d.png)
+
+3. Fill the project information and click `Create project`
+![image](https://user-images.githubusercontent.com/10986601/116002834-166ed200-a62e-11eb-8fcc-e9bac09df966.png)
+
+
 ## 3. Create a ReactJS Application
-    
-I will create an app called Brigh
+
