@@ -91,4 +91,4 @@ Login to your Gitlab and create a new project (I will name it bright-future)
     cd bright-future
     npm start
     ```
-3. If everything is install correctly, you will see a default webpage on http://localhost:3000/
+3. If everything is install correctly, you will see a default webpage shows as below on http://localhost:3000/
