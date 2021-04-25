@@ -102,3 +102,5 @@ Login to your Gitlab and create a new project (I will name it bright-future)
     git commit -m "Initial commit"
     git push -u origin master
     ```
+5. Refresh the Gitlab repository, you will see your `Bright Future` has been listed there.
+    ![image](https://user-images.githubusercontent.com/10986601/116003800-2dafbe80-a632-11eb-9136-411848b6ce11.png)
