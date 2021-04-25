@@ -81,3 +81,8 @@ Login to your Gitlab and create a new project (I will name it bright-future)
 
 ## 3. Create a ReactJS Application
 
+On your local machine, initialise a project called `bright-future` as well.
+
+```bash
+npx create-react-app bright-future
+```
