@@ -185,4 +185,5 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
 
     Open your project, if you create the files correctly, your project file structure should look like as below
 
-    
+    ![image](https://user-images.githubusercontent.com/10986601/116006377-83d62f00-a63d-11eb-9f0b-9e7ceb151e55.png)
+
