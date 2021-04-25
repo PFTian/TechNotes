@@ -199,7 +199,9 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
     docker images
     ```
 
-    if you see the below line, we can verify that we have created a nginx dcoker with our application
+    if you see the below line, we can verify that we have created a nginx dcoker with out application
+    ![image](https://user-images.githubusercontent.com/10986601/116007288-a0746600-a641-11eb-81b4-f1ed9466f324.png)
+
 
     Fire up a docker container based on the image we created
     ```
@@ -207,5 +209,7 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
     ```
 
     Now you can go to http://localhost:5000 and see our dockerlised app running.
+
+    ![image](https://user-images.githubusercontent.com/10986601/116007341-e92c1f00-a641-11eb-8d5d-a0817a32fbf6.png)
 
 # 5. Create Pipline
