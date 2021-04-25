@@ -199,7 +199,7 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
     docker images
     ```
 
-    if you see the below line, we can verify that we have created a nginx dcoker with out application
+    if you see the below line, we can verify that we have created a nginx dcoker with our application
 
     Fire up a docker container based on the image we created
     ```
@@ -207,3 +207,5 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
     ```
 
     Now you can go to http://localhost:5000 and see our dockerlised app running.
+
+# 5. Create Pipline
