@@ -94,6 +94,15 @@ Login to your Gitlab and create a new project (I will name it bright-future)
 3. If everything is install correctly, you will see a default webpage shows as below on http://localhost:3000/
    ![image](https://user-images.githubusercontent.com/10986601/116003343-17a0fe80-a630-11eb-8d46-049737f2f283.png)
 
+4. Check test passes
+    Run the `test` command
+    ```
+    npm test
+    ```
+    In the console prompt, press `a` to run all tests, if everything goes well, we will see
+
+    
+
 4. Push the project to your Gitlab repository
     ```bash
     git init
