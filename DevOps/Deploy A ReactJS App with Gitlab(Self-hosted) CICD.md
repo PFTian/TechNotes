@@ -55,12 +55,12 @@ Simply you just need to do
     sudo gitlab-runner register
     ```
 4. Enter your Gitlab instance URL
-    ```bash
+    ```
     Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )
     https://gitlab.yourdomain.com
     ```
 5. Enter the token you obtained to register the Runner:
-    ```bash
+    ```
     Please enter the gitlab-ci token for this runner
     Register Token
     ```
