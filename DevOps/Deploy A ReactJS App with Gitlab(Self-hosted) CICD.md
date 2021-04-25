@@ -79,7 +79,7 @@ Login to your Gitlab and create a new project (I will name it bright-future)
 ![image](https://user-images.githubusercontent.com/10986601/116002834-166ed200-a62e-11eb-8fcc-e9bac09df966.png)
 
 
-## 3. Create a ReactJS Application
+## 3. Create a ReactJS Application and Push to Gitlab repository
 
 1. On your local machine, initialise a project called `bright-future` as well.
 
@@ -92,3 +92,13 @@ Login to your Gitlab and create a new project (I will name it bright-future)
     npm start
     ```
 3. If everything is install correctly, you will see a default webpage shows as below on http://localhost:3000/
+   ![image](https://user-images.githubusercontent.com/10986601/116003343-17a0fe80-a630-11eb-8d46-049737f2f283.png)
+
+4. Push the project to your Gitlab repository
+    ```bash
+    git init
+    git remote add origin https://gitlab.yourdomain.cn/root/bright-future.git
+    git add .
+    git commit -m "Initial commit"
+    git push -u origin master
+    ```
