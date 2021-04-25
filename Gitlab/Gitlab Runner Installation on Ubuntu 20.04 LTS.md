@@ -1,10 +1,10 @@
-# Install Shared Runner on Ubuntu
+# Install Gitlab Runner on Ubuntu 20.04 LTS
 
 *Reference:* [Install GitLab Runner manually on GNU/Linux](https://docs.gitlab.com/runner/install/linux-manually.html)
 
 ## Prerequirement:
 
-1. Before installing the gitlab-runner, Please [install Docker]() at first.
+1. Before installing the gitlab-runner, Please [install Docker](https://github.com/PFTian/TechNotes/blob/master/Docker/Docker%20Installation.md) at first.
 
 2. Notice: 
     > We strongly advise against installing GitLab Runner on the same machine you plan to install GitLab on. Depending on how you decide to configure GitLab Runner and what tools you use to exercise your application in the CI environment, GitLab Runner can consume significant amount of available memory.
