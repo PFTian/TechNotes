@@ -10,24 +10,24 @@ Basically we just need to do
 
 1. Install and configure the necessary dependencies
 
-    ```
+    ```bash
     sudo apt-get update
     sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
     ```
 
 2. Install Postfix
-    ```
+    ```bash
     sudo apt-get install -y postfix
     ```
     Choose `Internet Site` and use your server's external DNS as `mail name`.
 
 3. Add the GitLab package repository and install the package
 
-    ```
+    ```bash
     curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash   
     ```
     Use your domain name as parameter to install the gitlab
-    ```
+    ```bash
     sudo EXTERNAL_URL="https://gitlab.yourdomain.com" apt-get install gitlab-ee
     ```
 
@@ -35,6 +35,40 @@ Basically we just need to do
 
 Gitlab runner is an application that runs Giltab jobs in piplines
 
-> you should install GitLab Runner on a machine that’s separate from the one that hosts the GitLab instance for security and performance reasons.
+> You should install GitLab Runner on a machine that’s separate from the one that hosts the GitLab instance for security and performance reasons.
 
+You can follow [Gitlab Runner Installation on Ubuntu 20.04 LTS](https://github.com/PFTian/TechNotes/blob/master/Gitlab/Gitlab%20Runner%20Installation%20on%20Ubuntu%2020.04%20LTS.md) or [offical document](https://docs.gitlab.com/runner/install/linux-manually.html) to install gitlab runner on a seperate Ubuntu server.
 
+Simply you just need to do
+
+1. Download the latest `deb` file
+    ```bash
+    curl -LJO https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_amd64.deb
+    ```
+
+2. Install the package
+    ```bash
+    sudo dpkg -i gitlab-runner_amd64.deb
+    ```
+3. Register your runner with command
+    ```bash
+    sudo gitlab-runner register
+    ```
+4. Enter your Gitlab instance URL
+    ```bash
+    Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )
+    https://gitlab.yourdomain.com
+    ```
+5. Enter the token you obtained to register the Runner:
+    ```bash
+    Please enter the gitlab-ci token for this runner
+    Register Token
+    ```
+
+## 3. Create a New Project on Gitlab
+
+Login to your Gitlab and create a new project (I will name it bright-future)
+
+## 3. Create a ReactJS Application
+    
+I will create an app called Brigh
