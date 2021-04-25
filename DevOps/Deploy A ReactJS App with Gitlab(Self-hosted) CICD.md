@@ -209,3 +209,6 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
     ```
 
     Now you can go to http://localhost:5000 and see our dockerlised app running.
+    
+    ![image](https://user-images.githubusercontent.com/10986601/116007341-e92c1f00-a641-11eb-8d5d-a0817a32fbf6.png)
+
