@@ -1,5 +1,5 @@
 
-# Gitlab Installation
+# Gitlab Installation on Ubuntu 20.04 LTS
 ## Content
 
 * [Requirements](#Requirements)
