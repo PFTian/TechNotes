@@ -200,6 +200,8 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
     ```
 
     if you see the below line, we can verify that we have created a nginx dcoker with out application
+    ![image](https://user-images.githubusercontent.com/10986601/116007288-a0746600-a641-11eb-81b4-f1ed9466f324.png)
+
 
     Fire up a docker container based on the image we created
     ```
