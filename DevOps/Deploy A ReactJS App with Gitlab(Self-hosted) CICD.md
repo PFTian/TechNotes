@@ -81,8 +81,14 @@ Login to your Gitlab and create a new project (I will name it bright-future)
 
 ## 3. Create a ReactJS Application
 
-On your local machine, initialise a project called `bright-future` as well.
+1. On your local machine, initialise a project called `bright-future` as well.
 
-```bash
-npx create-react-app bright-future
-```
+    ```bash
+    npx create-react-app bright-future
+    ```
+2. After creating the project successfully, we run the project
+    ```bash
+    cd bright-future
+    npm start
+    ```
+3. If everything is install correctly, you will see a default webpage on http://localhost:3000/
