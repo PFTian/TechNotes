@@ -576,7 +576,7 @@ If you have your personal server, you can deploy your app on your own app. The a
     
     We use an image with a ssh client (kroniak/ssh-client) and run our commands one by one.
 
-### Congratulations!
+## 6. Congratulations!
 
 If you follow the steps correctly, I think you have setup a simple CI/CD pipelines for a ReactJS project on your self-hosted Gitlab repostory. 
 
