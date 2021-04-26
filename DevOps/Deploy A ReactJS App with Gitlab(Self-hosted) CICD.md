@@ -253,3 +253,32 @@ If everything runs well, it should be `passed`.
 <img width="628" alt="image" src="https://user-images.githubusercontent.com/10986601/116027270-00d9c680-a687-11eb-88af-6e26207e453d.png">
 
 ## 5.2 Pipelines - test
+
+After `build`, we should add a test stage to check if all the test pass.
+
+```
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  image: node:14.16.1-alpine3.13
+  before_script:
+    - echo "Start building app..."
+  script:
+    - npm install
+    - npm run build
+    - echo "Build successfully"
+
+test:
+  stage: test
+  image: node:14.16.1-alpine3.13
+  before_script:
+    - echo "Start testing app..."
+  script:
+    - yarn test
+    - echo "Test successfully!"
+
+
+```
