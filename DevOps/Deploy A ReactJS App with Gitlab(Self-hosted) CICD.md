@@ -212,4 +212,38 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
 
     ![image](https://user-images.githubusercontent.com/10986601/116007341-e92c1f00-a641-11eb-8d5d-a0817a32fbf6.png)
 
-# 5. Create Pipline
+## 5. Gitlab Piplines
+
+Gitlab uses `gitlab-ci.yml` to run the piplines. So we need to create a `gitlab-ci.yml` file at the root of the project folder.
+
+Once we added the `gitlab-ci.yml` file and push it to the Gitlab repository, Gitlab will detect this file and Gitlab-runner will go through the file and run all jobs that we specific there.
+
+In this article, we will create 4 stages as example to demonstrate how Gitlab pipline works
+
+* build
+* test
+* docker-build
+* deploy
+
+## 5.1 Piplines - build
+
+Let's first create a build stage for piplines. See the below example:
+
+```
+stages:
+  - build
+
+build:
+  stage: build
+  image: node:14.16.1-alpine3.13
+  before_script:
+    - echo "Start building app..."
+  script:
+    - npm install
+    - npm run build
+    - echo "Build successfully"
+```
+
+Commit and push your code to your self-hosted Gitlab. You will see there is a `build` stage on your project piplines. If everything goes well, it should be `passed`.
+
+
