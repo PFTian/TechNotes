@@ -294,6 +294,7 @@ If everything runs well, both build and test should show `passed`.
 Till now, we have 2 stages (build and test) to show how piplines work. We build the app at first and then run the test in sequence. You might be curious why we run `npm install` two times in two stages? That is because each job runs in a new empty docker container instance and we don't have any data from previous jobs. In order to share data among stages, we need to use artifacts or cache, what is the difference? Here is the answer from Gitlab offical document.
 
 > **Cache vs artifacts**
+> 
 > If you use cache and artifacts to store the same path in your jobs, the cache might be overwritten because caches are restored before artifacts.
 > Don’t use caching for passing artifacts between stages, as it is designed to store runtime dependencies needed to compile the project:
 > * `cache`: **For storing project dependencies**
