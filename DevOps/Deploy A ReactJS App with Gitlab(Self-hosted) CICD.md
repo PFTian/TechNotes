@@ -138,7 +138,6 @@ We will use [Docker multi-stage builds](https://docs.docker.com/develop/develop-
 
     # Prepare the container for building React
     RUN npm install
-    RUN npm install react-scripts@3.0.1 -g
     # Build your application
     RUN npm run build
 
@@ -365,4 +364,5 @@ Cleaning up file based variables
 ERROR: Job failed: exit code 1
 ```
 <img width="806" alt="image" src="https://user-images.githubusercontent.com/10986601/116033306-c3c80100-a693-11eb-80b6-c55b9c77313a.png">
+
 
