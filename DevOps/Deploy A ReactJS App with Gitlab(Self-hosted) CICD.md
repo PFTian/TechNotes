@@ -436,8 +436,6 @@ In this section, we also use Gitlab [Predefined Environment Variables](https://d
 ## 5.4 Pipelines - deploy
 With the docker images that we uploaded to project container registry, we can deploy our application either on the server or a cloud platform
 
-### 5.4.1 Devploy on a server
-
 If you have your personal server, you can deploy your app on your own app. The article that I refered uses `Digital Ocean` to set up a new server. You can click this [link](https://dev.to/christianmontero/gitlab-ci-cd-example-with-a-dockerized-reactjs-app-1cda) to check the details. You can of course choose other VPS providers like `Linode` and `Vultr` or cloud providers like `Azure` and `AWS`.
 
 * Open your terminal and login to your server remotely with
@@ -583,6 +581,3 @@ If you have your personal server, you can deploy your app on your own app. The a
 If you follow the steps correctly, I think you have setup a simple CI/CD pipelines for a ReactJS project on your self-hosted Gitlab repostory. 
 
 Now if you made some changes locally and push these changes to your Gitlab on master branch. Your app will also be deployed in a docker Nginx container on your server automatically.
-
-### 5.4.2 Deply on Azure App Service
-
