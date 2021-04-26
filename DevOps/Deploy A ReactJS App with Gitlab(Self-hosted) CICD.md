@@ -353,14 +353,7 @@ Based on the offical document [here](https://docs.gitlab.com/ee/ci/docker/using_
 So we should register a new runner with `privileged` enabled.
 
 ```
-sudo gitlab-runner register -n \
-  --url https://gitlab.yourdomian.com/ \
-  --registration-token REGISTRATION_TOKEN \
-  --executor docker \
-  --description "My Docker Runner" \
-  --docker-image "docker:19.03.12" \
-  --docker-privileged \
-  --docker-volumes "/certs/client"
+sudo gitlab-runner register -n --url https://gitlab.yourdomian.com/ --registration-token REGISTRATION_TOKEN --executor docker --description "My Docker Runner" --docker-image "docker:20.10.6-dind"  --docker-privileged --docker-volumes "/certs/client"
 ```
 
 otherwise, you probably get an error like below when running the pipelines process
