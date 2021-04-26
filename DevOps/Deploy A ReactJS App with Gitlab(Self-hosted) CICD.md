@@ -244,6 +244,13 @@ build:
     - echo "Build successfully"
 ```
 
-Commit and push your code to your self-hosted Gitlab. You will see there is a `build` stage on your project piplines. If everything goes well, it should be `passed`.
+Commit and push your code to your self-hosted Gitlab. You will see there is a `build` stage on your project piplines. 
+
+<img width="634" alt="image" src="https://user-images.githubusercontent.com/10986601/116027198-d12abe80-a686-11eb-95e9-c2a60197aeba.png">
+
+If everything runs well, it should be `passed`.
+
+<img width="628" alt="image" src="https://user-images.githubusercontent.com/10986601/116027270-00d9c680-a687-11eb-88af-6e26207e453d.png">
+
 
 
