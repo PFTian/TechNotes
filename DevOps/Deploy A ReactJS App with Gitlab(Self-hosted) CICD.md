@@ -567,7 +567,7 @@ If you have your personal server, you can deploy your app on your own app. The a
         - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker login --username "$CI_REGISTRY_USER" --password "$CI_REGISTRY_PASSWORD" $CI_REGISTRY"
         - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker pull $CI_REGISTRY_IMAGE"
         - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker stop bright-future || true && docker rm bright-future || true"
-        - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker run -p 8000:80 -d --rm --name bright-future $CI_REGISTRY_IMAGE"
+        - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker run -p 80:80 -d --rm --name bright-future $CI_REGISTRY_IMAGE"
     ```
 
     What are we doing at the deploy stage?
