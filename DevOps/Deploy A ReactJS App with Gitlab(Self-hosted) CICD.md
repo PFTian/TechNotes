@@ -365,3 +365,11 @@ sudo gitlab-runner register -n \
 
 otherwise, you probably get an error like below when running the pipelines process
 
+```
+error during connect: Post http://docker:2375/v1.24/auth: dial tcp: lookup docker on 168.63.129.16:53: no such host
+Cleaning up file based variables
+00:01
+ERROR: Job failed: exit code 1
+```
+<img width="806" alt="image" src="https://user-images.githubusercontent.com/10986601/116033306-c3c80100-a693-11eb-80b6-c55b9c77313a.png">
+
