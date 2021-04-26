@@ -417,7 +417,15 @@ Commit and push your code. You will see a new `docker-build` is added and passed
 
 <img width="729" alt="image" src="https://user-images.githubusercontent.com/10986601/116048363-aef56880-a6a7-11eb-8dd9-5b5f8caec46e.png">
 
-Now go to your project side bar and click `Packages & Registries` -> `Container Registry`, you will also find the image that you just built by docker in docker has been uploaded.
+Now go to your project side bar and click `Packages & Registries` -> `Container Registry`, you will also find the image that you just built by docker in docker has been uploaded to your project `Container Registry`.
 
 <img width="1016" alt="image" src="https://user-images.githubusercontent.com/10986601/116048664-f976e500-a6a7-11eb-8956-c8187818a2af.png">
 
+**Predefined Environment Variables:**
+
+In this section, we also use Gitlab [Predefined Environment Variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html). I listed the ones that we used in this phase at below:
+
+ * CI_REGISTRY_USER - The username to push containers to the project’s GitLab Container Registry. Only available if the Container Registry is enabled for the project.
+ * CI_REGISTRY_PASSWORD - The password to push containers to the project’s GitLab Container Registry. Only available if the Container Registry is enabled for the project.
+ * CI_REGISTRY - The address of the GitLab Container Registry. Only available if the Container Registry is enabled for the project. This variable includes a :port value if one is specified in the registry configuration.
+ * CI_REGISTRY_IMAGE - The address of the project’s Container Registry. Only available if the Container Registry is enabled for the project.
