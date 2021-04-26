@@ -365,4 +365,54 @@ ERROR: Job failed: exit code 1
 ```
 <img width="806" alt="image" src="https://user-images.githubusercontent.com/10986601/116033306-c3c80100-a693-11eb-80b6-c55b9c77313a.png">
 
+***Note:***
+If you register a new runner with `privileged` enabled, you should use this new runner to run the docker in docker jobs. You may can choose to delete the older runner in `/etc/gitlab-runner/config.toml` file or using gitlab-runner `tags` to specify which runner to excute which specific jobs with the same `tags`.
+
+Add the below code to your `.gitlab-ci.yml`
+
+```
+stages:
+  - build
+  - test
+  - docker-build
+
+build:
+  stage: build
+  image: node:14.16.1-alpine3.13
+  before_script:
+    - echo "Start building app..."
+  script:
+    - npm install
+    - npm run build
+    - echo "Build successfully"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+      - node_modules/
+
+test:
+  stage: test
+  image: node:14.16.1-alpine3.13
+  before_script:
+    - echo "Start testing app..."
+  script:
+    - npm test
+    - echo "Test successfully!"
+
+docker-build:
+  stage: docker-build
+  image: docker:latest
+  services:
+    - name: docker:20.10.6-dind
+  before_script:
+    - docker login --username "$CI_REGISTRY_USER" --password "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE
+    - echo "Registry Image:" $CI_REGISTRY_IMAGE
+```
+
+Commit and push your code. You will see a new `docker-build` is added.
+
 
