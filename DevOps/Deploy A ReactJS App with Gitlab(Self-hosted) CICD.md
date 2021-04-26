@@ -570,16 +570,19 @@ If you have your personal server, you can deploy your app on your own app. The a
         - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker run -p 80:80 -d --rm --name bright-future $CI_REGISTRY_IMAGE"
     ```
 
-    What are we doing at the deploy stage?
-
-    In order to make this happens, we need to establish a ssh connection between our pipeline and our server, to do that we will need to store the IP of our server as a environment variable and also our private key.
-
-    So, for this stage we will use an image with a ssh client (kroniak/ssh-client) and we will run our commands 1 by 1.
+    What are we doing at the deploy stage? 
+    
+    In order to make auto deploy happens, we need to establish a ssh connection between our pipeline and our server.
+    
+    You can think that now gitlab login to our server remotely and pull the image from our Gitlab `Container Registry` and run the docker container that contains our application
+    
+    We use an image with a ssh client (kroniak/ssh-client) and run our commands one by one.
 
 ### Congratulations!
 
 If you follow the steps correctly, I think you have setup a simple CI/CD pipelines for a ReactJS project on your self-hosted Gitlab repostory. 
 
 Now if you made some changes locally and push these changes to your Gitlab on master branch. Your app will also be deployed in a docker Nginx container on your server automatically.
+
 ### 5.4.2 Deply on Azure App Service
 
