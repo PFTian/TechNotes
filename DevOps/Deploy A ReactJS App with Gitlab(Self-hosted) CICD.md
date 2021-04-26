@@ -425,7 +425,161 @@ Now go to your project side bar and click `Packages & Registries` -> `Container 
 
 In this section, we also use Gitlab [Predefined Environment Variables](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html). I listed the ones that we used in this phase at below:
 
- * CI_REGISTRY_USER - The username to push containers to the project’s GitLab Container Registry. Only available if the Container Registry is enabled for the project.
- * CI_REGISTRY_PASSWORD - The password to push containers to the project’s GitLab Container Registry. Only available if the Container Registry is enabled for the project.
- * CI_REGISTRY - The address of the GitLab Container Registry. Only available if the Container Registry is enabled for the project. This variable includes a :port value if one is specified in the registry configuration.
- * CI_REGISTRY_IMAGE - The address of the project’s Container Registry. Only available if the Container Registry is enabled for the project.
+ * __CI_REGISTRY_USER -__ The username to push containers to the project’s GitLab Container Registry. Only available if the Container Registry is enabled for the project.
+
+ * __CI_REGISTRY_PASSWORD -__ The password to push containers to the project’s GitLab Container Registry. Only available if the Container Registry is enabled for the project.
+
+ * __CI_REGISTRY -__ The address of the GitLab Container Registry. Only available if the Container Registry is enabled for the project. This variable includes a :port value if one is specified in the registry configuration.
+
+ * __CI_REGISTRY_IMAGE -__ The address of the project’s Container Registry. Only available if the Container Registry is enabled for the project.
+
+## 5.4 Pipelines - deploy
+With the docker images that we uploaded to project container registry, we can deploy our application either on the server or a cloud platform
+
+### 5.4.1 Devploy on a server
+
+If you have your personal server, you can deploy your app on your own app. The article that I refered uses `Digital Ocean` to set up a new server. You can click this [link](https://dev.to/christianmontero/gitlab-ci-cd-example-with-a-dockerized-reactjs-app-1cda) to check the details. You can of course choose other VPS providers like `Linode` and `Vultr` or cloud providers like `Azure` and `AWS`.
+
+* Open your terminal and login to your server remotely with
+
+    ```
+    ssh root@<server_ip>
+    ```
+
+* [Install the Docker ](https://dev.to/christianmontero/gitlab-ci-cd-example-with-a-dockerized-reactjs-app-1cda) on the server
+
+* Let's try to pull the image from our `Container Registry` and check if the image has been built successfully.
+
+    - Open the project on the Gitlab
+    - Go to `Packages & Registry` -> `Container Registry`
+    - Click `CLI Commands` on the top right and find the registry information
+    <img width="315" alt="image" src="https://user-images.githubusercontent.com/10986601/116053285-17931400-a6ad-11eb-838e-634191431d2c.png">
+    - Go back to your deploy server, and login the container registry by
+
+        ```
+        docker login gitlab.<yourdomain>.com:5050
+        ```
+    - Input your `username` and `password`
+    - Pull image with using
+        ```
+        docker pull gitlab.<yourdomain>.com: 5050/root/bright-future[:tag]
+        ```
+      Run `docker ps -a` to check if image has been downloaded successfully.
+
+    - You can run the docker container manully by
+        ```
+        docker run -p 8000:80 -d --name bright-future gitlab.<yourdomain>.com:5050/root/bright-future
+        ```
+    If above steps run very well, you can see your `bright-future` has been deployed manully on `http://your_server_ip:8000`.
+
+    <img width="1350" alt="image" src="https://user-images.githubusercontent.com/10986601/116056022-e700a980-a6af-11eb-95fd-1ce0e910bafd.png">
+
+    ***Note:*** If your VPS/Cloud Providers has their own port security rules, the port 8000 might be blocked and need you to open it by yourself.
+
+    Now that we verify that our server is running perfectly and we can run our app there. Next, we need to store our server's ssh private key and IP address as an environment variable in our GitLab project so that our Gitlab can access the deploy server remotely, like how we login the server by opening a terminal.
+
+* Create your ssh private/public key pairs on your server by
+    ```bash
+    ssh-keygen -m PEM -t rsa -b 4096 -C "your_email@example.com"
+    ```
+    It will ask you for a file to save the key, just type enter to use the default one, then it will ask you for a passphrase, for this example let's leave it empty and press enter a couple of times, and then you will see a successful message, then we need to copy our private key add it to our project on GitLab, we can run this command to see the our private key.
+
+* Check your ssh private key at `~/.ssh/id_rsa`
+
+    ```
+    cat ~/.ssh/id_rsa
+    ```
+    Copy all the content from the terminal
+    ```
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIJKAIBAAKCAgEArPK6v04pwEn1xkGy4CCMkA6pNafxs4S8xKM6iq8aXE00ka6z
+    ...
+    -----END RSA PRIVATE KEY-----
+    ```
+* Open your project on gitlab. On the side bar, Click `Settings` -> `CI/CD` -> `Variables` -> `Expand`. 
+    - Click the `Add Variable` button.
+    - Input `SSH_PRIVATE_KEY` as Key
+    - Input copied private key from above step as value
+    - Choose Type as `File`
+    <img width="768" alt="image" src="https://user-images.githubusercontent.com/10986601/116058612-96d71680-a6b2-11eb-8674-facfe934e355.png">
+    - Click `Add Variable` to save the variable.
+
+* Then we add another varialbe called `SERVER_IP` with your <server_ip> as value. Choose Type as `Variable`.
+
+    <img width="768" alt="image" src="https://user-images.githubusercontent.com/10986601/116061331-5036eb80-a6b5-11eb-9568-06180b4107cd.png">
+
+    Finally, you will have two variables added to your project on Gitlab.
+
+    <img width="911" alt="image" src="https://user-images.githubusercontent.com/10986601/116061498-82484d80-a6b5-11eb-8dce-60c84e113586.png">
+
+* Add the below script to your `.gitlab-ci.yml` file.
+
+    ```
+    stages:
+    - build
+    - test
+    - docker-build
+    - deploy
+
+    build:
+    stage: build
+    image: node:14.16.1-alpine3.13
+    before_script:
+        - echo "Start building app..."
+    script:
+        - npm install
+        - npm run build
+        - echo "Build successfully"
+    artifacts:
+        expire_in: 1 hour
+        paths:
+        - build
+        - node_modules/
+
+    test:
+    stage: test
+    image: node:14.16.1-alpine3.13
+    before_script:
+        - echo "Start testing app..."
+    script:
+        - npm test
+        - echo "Test successfully!"
+
+    docker-build:
+    stage: docker-build
+    image: docker:latest
+    services:
+        - name: docker:20.10.6-dind
+    before_script:
+        - docker login --username "$CI_REGISTRY_USER" --password "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    script:
+        - docker build --pull -t $CI_REGISTRY_IMAGE .
+        - docker push $CI_REGISTRY_IMAGE
+        - echo "Registry Image:" $CI_REGISTRY_IMAGE
+
+    deploy:
+    stage: deploy
+    image: kroniak/ssh-client
+    before_script:
+        - echo "Deploying app for development environment"
+    script:
+        - chmod 400 $SSH_PRIVATE_KEY
+        - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker login --username "$CI_REGISTRY_USER" --password "$CI_REGISTRY_PASSWORD" $CI_REGISTRY"
+        - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker pull $CI_REGISTRY_IMAGE"
+        - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker stop bright-future || true && docker rm bright-future || true"
+        - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY root@$SERVER_IP "docker run -p 8000:80 -d --rm --name bright-future $CI_REGISTRY_IMAGE"
+    ```
+
+    What are we doing at the deploy stage?
+
+    In order to make this happens, we need to establish a ssh connection between our pipeline and our server, to do that we will need to store the IP of our server as a environment variable and also our private key.
+
+    So, for this stage we will use an image with a ssh client (kroniak/ssh-client) and we will run our commands 1 by 1.
+
+### Congratulations!
+
+If you follow the steps correctly, I think you have setup a simple CI/CD pipelines for a ReactJS project on your self-hosted Gitlab repostory. 
+
+Now if you made some changes locally and push these changes to your Gitlab on master branch. Your app will also be deployed in a docker Nginx container on your server automatically.
+### 5.4.2 Deply on Azure App Service
+
