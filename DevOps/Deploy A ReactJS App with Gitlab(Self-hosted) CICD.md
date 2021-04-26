@@ -307,3 +307,37 @@ Till now, we have 2 stages (build and test) to show how piplines work. We build 
 > You can define an expiry time so artifacts are deleted after a defined time. Use dependencies to control which jobs fetch the artifacts.
 > 
 > Artifacts can also be used to make files available for download after a pipeline completes, like a build image.
+
+Let's improve our script with below code:
+
+```
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  image: node:14.16.1-alpine3.13
+  before_script:
+    - echo "Start building app..."
+  script:
+    - npm install
+    - npm run build
+    - echo "Build successfully"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+      - node_modules/
+
+test:
+  stage: test
+  image: node:14.16.1-alpine3.13
+  before_script:
+    - echo "Start testing app..."
+  script:
+    - npm test
+    - echo "Test successfully!"
+```
+
+Commit and push your code, you will get the same result but more faster.
