@@ -659,6 +659,6 @@ to Docker Hub of your repositry.
 
 Then when you push a new image to the docker hub, the Azure App Serivce will deploy your application from Docker Hub immediately.
 
-**Option 2:**
+**Option 2:** (Pending to fix)
 
 You can also use `Tags push event` to trigger the Azure App Serivce Webhook to force `App Serivce` to deploy your app from Gitlab Rigstry.
