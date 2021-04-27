@@ -620,7 +620,7 @@ You can also choose to deploy your application from your project `Container Regi
 * On the `Settings` page, turn the `Continuous deployment` on
     ![image](https://user-images.githubusercontent.com/10986601/116185145-9b074080-a753-11eb-873d-818bbd54461c.png)
 
- * Then
+* Then
  
     **Option 1:**
 
@@ -639,6 +639,7 @@ You can also choose to deploy your application from your project `Container Regi
         - docker push "$DOCKER_USER/$DOCKER_REGISTRY_IMAGE"
         - echo "Registry Image:" $DOCKER_REGISTRY_IMAGE
     ```
+    
     Where `DOCKER_USER` `DOCKER_PASSWORD` and `DOCKER_REGISTRY_IMAGE` are the variables added to your pipeline variables for `Docker login user`, `Docker login password` and `Docker image name`
 
     And Skip the `deploy` stage at the `.gitlab-ci.yml`
@@ -661,8 +662,10 @@ You can also choose to deploy your application from your project `Container Regi
     
     ![image](https://user-images.githubusercontent.com/10986601/116210087-234a0d80-a775-11eb-97ac-2cebd0b8ea54.png)
     
-    And click `Add webhook`. 
+    And click `Add webhook` button to save the configuration. 
     
-    This means App Service Webhook URL will be triggered when the pipeline status changes, either `passed` or `failed`. If it is `failed`, the image will not be uploaded to `Container Registry` and app service will use the last build. If it is `passed`, app service will pull the latest the image to deploy the app.
+    This means App Service Webhook URL will be triggered when the pipeline status changes, from `running` to either `passed` or `failed`. If it is `failed`, the image will not be uploaded to `Container Registry` and app service will use the last build. If it is `passed`, app service will pull the latest image to deploy the app.
     
-    Now you can made some changes on your code and push it to Gitlab. You will see your changes will be applied on Azure App Service
+### Congratulations!
+
+Now you can made some changes on your code and push it to Gitlab. You will see your changes will be applied on Azure App Service. 
