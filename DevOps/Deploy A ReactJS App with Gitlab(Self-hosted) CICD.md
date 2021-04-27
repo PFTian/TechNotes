@@ -613,11 +613,14 @@ You can also choose to deploy your application from your project `Container Regi
 * After App Service set up, go to your app service `Overview` page and click the `URL`
   ![image](https://user-images.githubusercontent.com/10986601/116184311-1a941000-a752-11eb-9184-d13f643e2fbb.png)
   You will see your web application has been published on the App Service
+  ![image](https://user-images.githubusercontent.com/10986601/116192193-140c9500-a760-11eb-87b8-7d188ac6508c.png)
   
 * Enable the continuous deployment. Go to app service side bar and Click `Deployment Center` under `Deployment` section.
 
 * On the `Settings` page, turn the `Continuous deployment` on
     ![image](https://user-images.githubusercontent.com/10986601/116185145-9b074080-a753-11eb-873d-818bbd54461c.png)
 
-  
+* Now if you made some changes on the code and publish a new image to your Gitlab `Container Registry`, Azure App Service will retrieve your latest image from your container registry and publish the app automatically.
+
+
 
