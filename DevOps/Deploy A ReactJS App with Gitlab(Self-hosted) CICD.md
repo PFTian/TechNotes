@@ -622,5 +622,43 @@ You can also choose to deploy your application from your project `Container Regi
 
 * Now if you made some changes on the code and publish a new image to your Gitlab `Container Registry`, Azure App Service will retrieve your latest image from your container registry and publish the app automatically.
 
+### ***NOTE:***
 
+For now, based on my personal knowledge and experince, the integration between Azure App Serivce and Gitlab Container Registery is not very good. Sometimes, app service can pull and publish image automatically sometimes it doesn't work immediately. 
 
+If you really want to use App Azure Service
+
+**Option 1(recommanded):**
+
+It is better for you to use Docker Hub instead of Gitlab Container Registry. So in the `.gitlab-ci.yml` file, you should push your image to Docker Hub at `docker-build` stage with
+
+```
+docker-build:
+  stage: docker-build
+  image: docker:latest
+  services:
+    - name: docker:20.10.6-dind
+  before_script:
+    - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+  script:
+    - docker build --pull -t "$DOCKER_USER/$DOCKER_REGISTRY_IMAGE" .
+    - docker push "$DOCKER_USER/$DOCKER_REGISTRY_IMAGE"
+    - echo "Registry Image:" $DOCKER_REGISTRY_IMAGE
+```
+Where `DOCKER_USER` `DOCKER_PASSWORD` and `DOCKER_REGISTRY_IMAGE` are the variables added to your pipeline variables for `Docker login user`, `Docker login password` and `Docker image name`
+
+And Skip the `deploy` stage at the `.gitlab-ci.yml`
+
+Then add Azure App Servicce Webhook URL 
+
+![image](https://user-images.githubusercontent.com/10986601/116197425-54234600-a767-11eb-821c-e99eb5ecaea4.png)
+
+to Docker Hub of your repositry.
+
+![image](https://user-images.githubusercontent.com/10986601/116197789-bda35480-a767-11eb-9981-428ff3579977.png)
+
+Then when you push a new image to the docker hub, the Azure App Serivce will deploy your application from Docker Hub immediately.
+
+**Option 2:**
+
+You can also use `Tags push event` to trigger the Azure App Serivce Webhook to force `App Serivce` to deploy your app from Gitlab Rigstry.
