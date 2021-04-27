@@ -589,13 +589,35 @@ If you have your personal server, you can deploy your app on your own app. The a
 You can also choose to deploy your application from your project `Container Registry` to an Azure app service.
 
 * Login to your [Azure Portal](https://portal.azure.com/)
+
 * Click the `App Services` button on the top
    ![image](https://user-images.githubusercontent.com/10986601/116179339-bff6b600-a749-11eb-8138-c25e01576262.png)
+   
 * Click `Create` in the `App Serivces` Page.
     ![image](https://user-images.githubusercontent.com/10986601/116179561-28459780-a74a-11eb-9e5b-ee0392a90ffc.png)
-* At `Create Web App` page
+    
+* At `Create Web App` -> `Basics` page
     - Choose the `Subscription` and `Resource Group`
     - Fill the instance name, choose the `Docker Container` as Publish and Pick a `Region`.
     - Choose a App Service Plan, Here for demo purpose, I am using `Free F1 1GB memory` which is enough for this article.
   ![image](https://user-images.githubusercontent.com/10986601/116180501-98a0e880-a74b-11eb-9969-1d6c31f51539.png)
- 
+  
+* At `Create Web App` -> `Docker` page
+    - Choose `Single Container` as options
+    - Choose `Private Registry` as Image Source
+    - Fill `Private registry options` based on your project, Here is mine
+    ![image](https://user-images.githubusercontent.com/10986601/116183257-25e63c00-a750-11eb-8405-ea62c6553d90.png)
+
+* Click `Review + create` at Bottom to create App Service.
+
+* After App Service set up, go to your app service `Overview` page and click the `URL`
+  ![image](https://user-images.githubusercontent.com/10986601/116184311-1a941000-a752-11eb-9184-d13f643e2fbb.png)
+  You will see your web application has been published on the App Service
+  
+* Enable the continuous deployment. Go to app service side bar and Click `Deployment Center` under `Deployment` section.
+
+* On the `Settings` page, turn the `Continuous deployment` on
+    ![image](https://user-images.githubusercontent.com/10986601/116185145-9b074080-a753-11eb-873d-818bbd54461c.png)
+
+  
+
