@@ -666,6 +666,6 @@ You can also choose to deploy your application from your project `Container Regi
     
     This means App Service Webhook URL will be triggered when the pipeline status changes, from `running` to either `passed` or `failed`. If it is `failed`, the image will not be uploaded to `Container Registry` and app service will use the last build. If it is `passed`, app service will pull the latest image to deploy the app.
     
-### Congratulations!
+    ### Congratulations!
 
-Now you can made some changes on your code and push it to Gitlab. You will see your changes will be applied on Azure App Service. 
+    Now you can made some changes on your code and push it to Gitlab. You will see your changes will be applied on Azure App Service. 
