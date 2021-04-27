@@ -658,6 +658,11 @@ You can also choose to deploy your application from your project `Container Regi
     You can also use `Pipeline events` to trigger the Azure App Serivce Webhook to force `App Serivce` to deploy your app from Gitlab Rigstry.
 
     Go to your project `Settings` -> `Webhooks`, fill the `URL` with app service `Webhook URL` and tick `Pipeline events`
+    
     ![image](https://user-images.githubusercontent.com/10986601/116210087-234a0d80-a775-11eb-97ac-2cebd0b8ea54.png)
     
+    And click `Add webhook`. 
+    
     This means App Service Webhook URL will be triggered when the pipeline status changes, either `passed` or `failed`. If it is `failed`, the image will not be uploaded to `Container Registry` and app service will use the last build. If it is `passed`, app service will pull the latest the image to deploy the app.
+    
+    Now you can made some changes on your code and push it to Gitlab. You will see your changes will be applied on Azure App Service
