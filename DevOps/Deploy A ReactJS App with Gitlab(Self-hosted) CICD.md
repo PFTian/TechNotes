@@ -436,6 +436,8 @@ In this section, we also use Gitlab [Predefined Environment Variables](https://d
 ## 5.4 Pipelines - deploy
 With the docker images that we uploaded to project container registry, we can deploy our application either on the server or a cloud platform
 
+### 5.4.1 Deploy to a server
+
 If you have your personal server, you can deploy your app on your own app. The article that I refered uses `Digital Ocean` to set up a new server. You can click this [link](https://dev.to/christianmontero/gitlab-ci-cd-example-with-a-dockerized-reactjs-app-1cda) to check the details. You can of course choose other VPS providers like `Linode` and `Vultr` or cloud providers like `Azure` and `AWS`.
 
 * Open your terminal and login to your server remotely with
@@ -576,8 +578,24 @@ If you have your personal server, you can deploy your app on your own app. The a
     
     We use an image with a ssh client (kroniak/ssh-client) and run our commands one by one.
 
-## 6. Congratulations!
+    ### Congratulations!
 
-If you follow the steps correctly, I think you have setup a simple CI/CD pipelines for a ReactJS project on your self-hosted Gitlab repostory. 
+    If you follow the steps correctly, I think you have setup a simple CI/CD pipelines for a ReactJS project on your self-hosted Gitlab repostory. 
 
-Now if you made some changes locally and push these changes to your Gitlab on master branch. Your app will also be deployed in a docker Nginx container on your server automatically.
+    Now if you made some changes locally and push these changes to your Gitlab on master branch. Your app will also be deployed in a docker Nginx container on your server automatically.
+
+### 5.4.2 Deploy to Azure App Service
+
+You can also choose to deploy your application from your project `Container Registry` to an Azure app service.
+
+* Login to your [Azure Portal](https://portal.azure.com/)
+* Click the `App Services` button on the top
+   ![image](https://user-images.githubusercontent.com/10986601/116179339-bff6b600-a749-11eb-8138-c25e01576262.png)
+* Click `Create` in the `App Serivces` Page.
+    ![image](https://user-images.githubusercontent.com/10986601/116179561-28459780-a74a-11eb-9e5b-ee0392a90ffc.png)
+* At `Create Web App` page
+    - Choose the `Subscription` and `Resource Group`
+    - Fill the instance name, choose the `Docker Container` as Publish and Pick a `Region`.
+    - Choose a App Service Plan, Here for demo purpose, I am using `Free F1 1GB memory` which is enough for this article.
+  ![image](https://user-images.githubusercontent.com/10986601/116180501-98a0e880-a74b-11eb-9969-1d6c31f51539.png)
+ 
