@@ -50,11 +50,17 @@ sh -c "$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 Powerlevel10K is a Zsh theme, the details can be found [here](https://github.com/romkatv/powerlevel10k)
 
-Installation
+Installation (Manually)
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 ```
+
+Installation (Oh My Zsh)
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+Set `ZSH_THEME="powerlevel10k/powerlevel10k"` in `~/.zshrc`
 
 Once you install the Powerlevel10k, there will be a Powerlevel10k configure wizard shows when you restart the iTerm2.
 
