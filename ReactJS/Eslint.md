@@ -113,4 +113,5 @@ Now after you install the ESLint with Airbnb package,
 
 Open the VSCode terminal and click the `PROBLEMS` tab, you will see ESLint already checked your file's potential syntax problems based on the Airbnb rules that you installed with above steps.
 
+![image](https://user-images.githubusercontent.com/10986601/124716273-7939ef00-df36-11eb-878f-00b72ee72999.png)
 
