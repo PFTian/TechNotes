@@ -124,8 +124,8 @@ And there will be an `.eslintrc.json` file created at your project root folder.
         "es2021": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "plugin:react/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -145,8 +145,10 @@ And there will be an `.eslintrc.json` file created at your project root folder.
 
 You can put your rules under the `rules` block.
 
+### Normal Problems:
 
-####
+**`'React' must be in scope when using JSX`**
+
 For React 17.x.x, based on [React Docs](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint).
 
 > If you are using `eslint-plugin-react`, the `react/jsx-uses-react `and `react/react-in-jsx-scope rules` are no longer necessary and can be turned off or removed.
@@ -160,6 +162,32 @@ So we can turn these two rules off at the `rules` block:
     // ...
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
+  }
+}
+```
+
+**`JSX not allowed in files with extension '.js'`**
+
+[Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react#naming) suggests to use `.jsx` extension for React components (eslint: react/jsx-filename-extension), you can rename your `.js` to `.jsx`. If you don't want to strictly use `.jsx` as extension of your files, you can turn the rules `off` or add the following rules in the `.eslintrc.json` file
+
+```json
+{
+  // ...
+  "rules": {
+    // ...
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
+}
+```
+
+For these who use Typescript, your can add rules like
+
+```json
+{
+  // ...
+  "rules": {
+    // ...
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
   }
 }
 ```
