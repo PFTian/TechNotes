@@ -15,8 +15,38 @@ __lint-staged -__ [lint-staged](https://github.com/okonet/lint-staged) is a tool
 
 ESLint is a javascript tool that can check your code for potential errors and bad code practices. It helps you enforce a code statndard and style guide in your codebase.
 
-Now the most popular style guides based on ESLint is [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript)
-
 If you create your ReactJS app with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html), the basic ESLint setup has been included in your project.
+
+Nowadays the most popular style guides based on ESLint is [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript). We will use Airbnb rules in this tutorial.
+
+### Setup ESLint
+
+Run the below command to install the ESLint to the project.
+
+__npm:__
+```bash
+npm install eslint --save-dev
+```
+__yarn:__
+
+```
+yarn add eslint --dev
+```
+
+If you want to install ESLint globally cross all of your projects, you can install ESLint with
+
+__npm:__
+```
+npm install -g eslint
+```
+
+__yarn:__
+```
+yarn add -g eslint
+```
+
+I personally prefer to use local eslint, So I will use local eslint for the rest of the tutorial.
+
+### Config ESLint with Airbnb package
 
 
