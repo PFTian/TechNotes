@@ -29,24 +29,80 @@ npm install eslint --save-dev
 ```
 __yarn:__
 
-```
+```bash
 yarn add eslint --dev
 ```
 
 If you want to install ESLint globally cross all of your projects, you can install ESLint with
 
 __npm:__
-```
+```bash
 npm install -g eslint
 ```
 
 __yarn:__
-```
+```bash
 yarn add -g eslint
 ```
 
 I personally prefer to use local eslint, So I will use local eslint for the rest of the tutorial.
 
 ### Config ESLint with Airbnb package
+
+Creating a ESLint configuration file with running:
+
+```bash
+npx eslint --init
+```
+
+You need to answer serveral questions about configuration files.
+
+Here is my choices:
+
+* ___How would you like to use ESLint?___
+
+  ___‣ To check syntax, find problems, and enforce code style___
+
+* ___What type of modules does your project use?___
+  
+  ___‣ JavaScript modules (import/export)___
+
+* ___Which framework does your project use?___
+
+  ___‣ React___
+
+* ___Does your project use TypeScript?___
+
+  ___‣ No___ (Depends on which language you use in your project)
+
+* ___Where does your code run?___
+  
+  ___Browser___ (Choose Node if you are programing backend)
+
+* ___How would you like to define a style for your project?___
+
+  ___▸ Use a popular style guide___
+
+* ___Which style guide do you want to follow?___
+
+  ___Airbnb: https://github.com/airbnb/javascript___
+
+* ___What format do you want your config file to be in?___
+
+  ___▸ JSON___
+
+Then the programe will check dependencies and ask if you want to install the dependencies.
+
+```
+The config that you've selected requires the following dependencies:
+
+eslint-plugin-react@^7.21.5 eslint-config-airbnb@latest eslint@^5.16.0 || ^6.8.0 || ^7.2.0 eslint-plugin-import@^2.22.1 eslint-plugin-jsx-a11y@^6.4.1 eslint-plugin-react-hooks@^4 || ^3 || ^2.3.0 || ^1.7.0
+```
+Choose `yes` to install all the dependencies
+* ___Would you like to install them now with npm?___
+
+  ___‣ Yes___
+
+
 
 
