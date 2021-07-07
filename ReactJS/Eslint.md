@@ -108,10 +108,56 @@ Now after you install the ESLint with Airbnb package,
 1. Open your VSCode, 
 2. Go to `Extensions` <img src="https://user-images.githubusercontent.com/10986601/124714671-9ec5f900-df34-11eb-8753-06bcab58f58d.png" width="25" height="25">,
 3. Search `ESlint`,
-4. Choose the one made by `Dirk Baeumer`.
+4. Choose the one made by `Dirk Baeumer`,
 5. Reopen your project with VSCode.
 
 Open the VSCode terminal and click the `PROBLEMS` tab, you will see ESLint already checked your file's potential syntax problems based on the Airbnb rules that you installed with above steps.
 
 ![image](https://user-images.githubusercontent.com/10986601/124716273-7939ef00-df36-11eb-878f-00b72ee72999.png)
 
+And there will be an `.eslintrc.json` file created at your project root folder.
+
+```json
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}
+
+```
+
+You can put your rules under the `rules` block.
+
+For React 17.x.x, based on [React Docs](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint).
+
+> If you are using `eslint-plugin-react`, the `react/jsx-uses-react `and `react/react-in-jsx-scope rules` are no longer necessary and can be turned off or removed.
+
+So we can turn these two rules at the `rules` block:
+
+```json
+{
+  // ...
+  "rules": {
+    // ...
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}
+```
