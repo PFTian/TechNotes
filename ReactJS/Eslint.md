@@ -103,6 +103,6 @@ Choose `yes` to install all the dependencies
 
   ___‣ Yes___
 
-
+Now after you install the ESLint, if you use VSCode, Go to VSCode `Extensions`
 
 
