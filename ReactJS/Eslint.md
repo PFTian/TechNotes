@@ -106,8 +106,11 @@ Choose `yes` to install all the dependencies
 Now after you install the ESLint with Airbnb package, 
 
 1. Open your VSCode, 
-2. Go to `Extensions` <img src="https://user-images.githubusercontent.com/10986601/124714671-9ec5f900-df34-11eb-8753-06bcab58f58d.png" width="25" height="25">. 3. Search `ESlint`,
+2. Go to `Extensions` <img src="https://user-images.githubusercontent.com/10986601/124714671-9ec5f900-df34-11eb-8753-06bcab58f58d.png" width="25" height="25">,
+3. Search `ESlint`,
 4. Choose the one made by `Dirk Baeumer`.
-5. Reopen your open with VSCode.
+5. Reopen your project with VSCode.
+
+Open the VSCode terminal and click the `PROBLEMS` tab, you will see ESLint already checked your file's potential syntax problems based on the Airbnb rules that you installed with above steps.
 
 
