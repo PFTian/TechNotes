@@ -103,6 +103,11 @@ Choose `yes` to install all the dependencies
 
   ___‣ Yes___
 
-Now after you install the ESLint, if you use VSCode, Go to VSCode `Extensions`
+Now after you install the ESLint with Airbnb package, 
+
+1. Open your VSCode, 
+2. Go to `Extensions` <img src="https://user-images.githubusercontent.com/10986601/124714671-9ec5f900-df34-11eb-8753-06bcab58f58d.png" width="25" height="25">. 3. Search `ESlint`,
+4. Choose the one made by `Dirk Baeumer`.
+5. Reopen your open with VSCode.
 
 
