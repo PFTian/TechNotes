@@ -145,11 +145,13 @@ And there will be an `.eslintrc.json` file created at your project root folder.
 
 You can put your rules under the `rules` block.
 
+
+####
 For React 17.x.x, based on [React Docs](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint).
 
 > If you are using `eslint-plugin-react`, the `react/jsx-uses-react `and `react/react-in-jsx-scope rules` are no longer necessary and can be turned off or removed.
 
-So we can turn these two rules at the `rules` block:
+So we can turn these two rules off at the `rules` block:
 
 ```json
 {
@@ -160,4 +162,14 @@ So we can turn these two rules at the `rules` block:
     "react/react-in-jsx-scope": "off"
   }
 }
+```
+
+### ESLint ignore file
+
+`.eslintignore` is the file where we can add files and folders that will not be applied the ESLint rules.
+
+For example, we can add `node_modules` into this file.
+
+```
+node_modules/**
 ```
