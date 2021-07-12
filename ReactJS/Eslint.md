@@ -1,15 +1,14 @@
 # Setup ESLint, Prettier, commitlint, pre-commit hooks with Husky v6 and lint-staged for a ReactJS Project with VSCode from scratch.
 
+**ESLint -** [ESLint](https://eslint.org/docs/user-guide/getting-started) is a tool for identifying and reporting on patterns found in ECMAScript/Javascript code, with the goal of making code more consistent and avoiding bugs.
 
-__ESLint -__ [ESLint](https://eslint.org/docs/user-guide/getting-started) is a tool for identifying and reporting on patterns found in ECMAScript/Javascript code, with the goal of making code more consistent and avoiding bugs.
+**Prettier -** [Prettier](https://prettier.io/docs/en/index.html) is an opinionated code formatter that ensures that all outputted code conforms to a consistent style.
 
-__Prettier -__ [Prettier](https://prettier.io/docs/en/index.html) is an opinionated code formatter that ensures that all outputted code conforms to a consistent style.
+**commitlint -** [commitlint](https://github.com/conventional-changelog/commitlint#what-is-commitlint) is a tool to check if your commit messages meet the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/)
 
-__commitlint -__ [commitlint](https://github.com/conventional-changelog/commitlint#what-is-commitlint) is a tool to check if your commit messages meet the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/)
+**Pre-commit -** [Pre-commit](https://pre-commit.com/) is a git hook that is useful for identifying issues before code submission. We use pre-commit here to check code format with `ESLint` and `Prettier` rules that we set in the configuration file.
 
-__Pre-commit -__ [Pre-commit](https://pre-commit.com/) is a git hook that is useful for identifying issues before code submission. We use pre-commit here to check code format with `ESLint` and `Prettier` rules that we set in the configuration file.
-
-__lint-staged -__ [lint-staged](https://github.com/okonet/lint-staged) is a tool that running linters makes your staged file formatted before commintting to your code base.
+**lint-staged -** [lint-staged](https://github.com/okonet/lint-staged) is a tool that running linters makes your staged file formatted before commintting to your code base.
 
 ## ESLint
 
@@ -23,11 +22,13 @@ Nowadays the most popular style guides based on ESLint is [Airbnb Javascript Sty
 
 Run the below command to install the ESLint to the project.
 
-__npm:__
+**npm:**
+
 ```bash
 npm install eslint --save-dev
 ```
-__yarn:__
+
+**yarn:**
 
 ```bash
 yarn add eslint --dev
@@ -35,12 +36,14 @@ yarn add eslint --dev
 
 If you want to install ESLint globally cross all of your projects, you can install ESLint with
 
-__npm:__
+**npm:**
+
 ```bash
 npm install -g eslint
 ```
 
-__yarn:__
+**yarn:**
+
 ```bash
 yarn add -g eslint
 ```
@@ -59,37 +62,37 @@ You need to answer serveral questions about configuration files.
 
 Here is my choices:
 
-* ___How would you like to use ESLint?___
+- **_How would you like to use ESLint?_**
 
-  ___‣ To check syntax, find problems, and enforce code style___
+  **_‣ To check syntax, find problems, and enforce code style_**
 
-* ___What type of modules does your project use?___
-  
-  ___‣ JavaScript modules (import/export)___
+- **_What type of modules does your project use?_**
 
-* ___Which framework does your project use?___
+  **_‣ JavaScript modules (import/export)_**
 
-  ___‣ React___
+- **_Which framework does your project use?_**
 
-* ___Does your project use TypeScript?___
+  **_‣ React_**
 
-  ___‣ No___ (Depends on which language you use in your project)
+- **_Does your project use TypeScript?_**
 
-* ___Where does your code run?___
-  
-  ___Browser___ (Choose Node if you are programing backend)
+  **_‣ No_** (Depends on which language you use in your project)
 
-* ___How would you like to define a style for your project?___
+- **_Where does your code run?_**
 
-  ___▸ Use a popular style guide___
+  **_Browser_** (Choose Node if you are programing backend)
 
-* ___Which style guide do you want to follow?___
+- **_How would you like to define a style for your project?_**
 
-  ___Airbnb: https://github.com/airbnb/javascript___
+  **_▸ Use a popular style guide_**
 
-* ___What format do you want your config file to be in?___
+- **_Which style guide do you want to follow?_**
 
-  ___▸ JSON___
+  **_Airbnb: https://github.com/airbnb/javascript_**
+
+- **_What format do you want your config file to be in?_**
+
+  **_▸ JSON_**
 
 Then the programe will check dependencies and ask if you want to install the dependencies.
 
@@ -98,14 +101,16 @@ The config that you've selected requires the following dependencies:
 
 eslint-plugin-react@^7.21.5 eslint-config-airbnb@latest eslint@^5.16.0 || ^6.8.0 || ^7.2.0 eslint-plugin-import@^2.22.1 eslint-plugin-jsx-a11y@^6.4.1 eslint-plugin-react-hooks@^4 || ^3 || ^2.3.0 || ^1.7.0
 ```
+
 Choose `yes` to install all the dependencies
-* ___Would you like to install them now with npm?___
 
-  ___‣ Yes___
+- **_Would you like to install them now with npm?_**
 
-Now after you install the ESLint with Airbnb package, 
+  **_‣ Yes_**
 
-1. Open your VSCode, 
+Now after you install the ESLint with Airbnb package,
+
+1. Open your VSCode,
 2. Go to `Extensions` <img src="https://user-images.githubusercontent.com/10986601/124714671-9ec5f900-df34-11eb-8753-06bcab58f58d.png" width="25" height="25">,
 3. Search `ESlint`,
 4. Choose the one made by `Dirk Baeumer`,
@@ -119,28 +124,21 @@ And there will be an `.eslintrc.json` file created at your project root folder.
 
 ```json
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "airbnb",
-        "plugin:react/recommended"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-    }
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {}
 }
-
 ```
 
 You can put your rules under the `rules` block.
@@ -187,10 +185,15 @@ For these who use Typescript, your can add rules like
   // ...
   "rules": {
     // ...
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ]
   }
 }
 ```
+
+For solving typescript common problems, please check [this tutorial](https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba).
 
 ### ESLint ignore file
 
@@ -201,3 +204,99 @@ For example, we can add `node_modules` into this file.
 ```
 node_modules/**
 ```
+
+### Run ESLint
+
+#### Check specific file
+
+```
+npx eslint yourTargetFile.js
+```
+
+#### Fix errors automatically
+
+```
+npx eslint yourTargetFile.js --fix
+```
+
+#### Run ESLint with ignoring warnings
+
+```
+npx eslint yourTargetFile.js --quiet
+```
+
+## Prettier
+
+We use `Prettier` to formate our code, cooperating with ESLinter. [This article](https://prettier.io/docs/en/comparison.html) is the comparition between `Prettier` and `Linters`. Based on [Integrating with Linters](https://prettier.io/docs/en/integrating-with-linters.html), `Prettier` is for `code formatting concerns`, Linters are for `code-quality concerns`.
+
+#### eslint-plugin-prettier
+
+`eslint-plugin-prettier` allows you run the Prettier as ESLint rule and report issues that differ from Prettier's expected output as ESLint errors.
+
+[This](https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint) is the comparison among `eslint-config-pretter`, `eslint-plugin-prettier` and `prettier-eslint`
+
+#### eslint-config-prettier
+
+Since ESLint also contains stylistic rules which might conflict with Prettier, we can turn off these rules that conflict or are unnecessary with Prettier by using `eslint-config-pretter`
+
+### Prettier Installation
+
+In yout project folder, install the dependencies about Prettier.
+
+```bash
+npm install prettier eslint-config-prettier eslint-plugin-prettier --save-dev
+```
+
+### Config Prettier
+
+Add `eslint-plugin-prettier` to `"prettier"` and `"rules"` of your `.eslintrc.json` file that you created from last section.
+
+```json
+{
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
+```
+
+This plugin ships with a `plugin:prettier/recommended` config that sets up both the `plugin` and `eslint-config-prettier` in one go.
+
+Add `eslint-config-prettier` to `"extends"` of your `.eslintrc.json` file that you created from last section.
+
+```json
+{
+  // ...
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended"
+  ]
+}
+```
+
+Since airbnb rules could have conflit rules with Prettier, for example, Airbnb javascript style guide asks
+
+> Always use double quotes (") for JSX attributes, but single quotes (') for all other JS. 
+
+However, Prettier uses [double quotes](https://prettier.io/docs/en/options.html#quotes) by default even though it doesn't suggest. 
+
+For solving conflits, We need to create a `.prettierrc` file under your project folder with code:
+
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "printWidth": 120,
+  "singleQuote": true,
+  "arrowParens": "always",
+  "proseWrap": "preserve"
+}
+```
+
+### Add Prettier ignore file
+We can create `.prettierignore` file under the poject root folder to contain the files that we want to ignore prettier check.
+
+```
+node_modules/**
+```
+
