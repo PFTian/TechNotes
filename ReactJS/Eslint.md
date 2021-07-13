@@ -1,4 +1,4 @@
-# Setup ESLint, Prettier, commitlint, pre-commit hooks with Husky v6 and lint-staged for a ReactJS Project with VSCode from scratch.
+# Setup ESLint, Prettier, commitlint, pre-commit hooks with Husky v7 and lint-staged for a ReactJS Project with VSCode from scratch.
 
 **ESLint -** [ESLint](https://eslint.org/docs/user-guide/getting-started) is a tool for identifying and reporting on patterns found in ECMAScript/Javascript code, with the goal of making code more consistent and avoiding bugs.
 
@@ -354,3 +354,104 @@ We will get
 ✖   found 1 problems, 0 warnings
 ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
 ```
+
+## Husky v7 with Pre-commit
+
+[Husky](https://typicode.github.io/husky/#/?id=features) is a tool to easily trigger the git hooks and run our scripts at each stage of a commit.
+
+Here, we will use ESLint and Prettier to check code quality and code format for the changes at staged files before we commit these changes.
+
+### Install Husky v7
+Run the below command:
+
+```
+npm install husky --save-dev
+```
+
+### Enable Git hooks
+
+Run 
+
+```
+npx husky install
+```
+
+There will be a `.husky/` folder created where you can add your commands to hooks.
+
+For example, run
+
+```
+npx husky add .husky/pre-commit "npm test"
+```
+
+This command will create a `pre-commit` file in the `.husky` folder with content `npm test`. Each time when you push a new commit, it will the test at first, if the test failed, the whole commit will be automatically aborted.
+
+
+### Support commitlint with commit-msg git hook
+
+Add `commit-msg` file at your root directory with the below command:
+
+```
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+ 
+`commit-msg` is a git hook that can validate your project state or commit message before allowing a commit to go through.
+
+Now if you commit your code again, you will find you can only commit your changes with following the conventional commit message format.
+
+## lint-staged
+
+Since git hook will check all the files of the projects, with large project, this kind of checking will be time-consuming. For solving this problem, we can install `lint-staged` package to only check the files that are only changed and staged.
+
+### Install lint-staged
+
+```
+npm install lint-staged --save-dev
+```
+
+### Config lint-staged
+
+Based on [lint-staged document](https://github.com/okonet/lint-staged), we can config lint-staged in `.lintstagedrc` file with `JSON` or `YAML` format.
+
+So let's create a file called `.lintstagedrc.json` at the root directory and add the below lint-staged command in it. You can check `lint-staged document` to figure out what command that lint-staged supports.
+
+```json
+{
+  "src/**/*.+(js|json|ts|tsx)": ["eslint"],
+  "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": ["prettier --write"]
+}
+```
+
+### Support lint-staged with pre-commit git hook
+
+Open your `package.json` file, add the below code to the `scripts`: 
+
+```json
+{
+  // ...
+  "scripts:" {
+    // ...
+    "lint-staged": "lint-staged",
+  }
+}
+```
+
+Now go to `.husky/pre-commit` file, add the below code to the file 
+
+```bash
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run lint-staged
+```
+
+
+## Conclusion
+Now if you commit the changes of your project again,
+
+1. `ESLint` and `Prettier`
+ will check your code quality and format of your changed files at `pre-commit` hook stage.
+
+2. The tool `commitlint` will check if your commit message follow the `Conventional Commit Format` at `commit-msg` stage.
+
+Either of above steps failed, the whole commit will be aborted, which means you won't commit your dirty code to the repository any more.
