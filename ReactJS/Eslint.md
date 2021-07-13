@@ -320,4 +320,37 @@ Open your `package.json` and add the below code block to your `scripts`.
 }
 ```
 
+## commitlint
 
+commintlint helps your team adhering to a commit convention. You can check [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for more details.
+
+### Install commitlint
+
+```bash
+npm install @commitlint/cli @commitlint/config-conventional --save-dev
+```
+
+### Create `commitlint.config.js` file
+
+Create the `commitlint.config.js` file at your project root folder, add the below configuration to the file.
+
+```js
+module.exports = { extends: ['@commitlint/config-conventional'] };
+```
+
+### Test the configuration
+
+We install the commitlint locally, so run
+
+```
+echo 'foo: bar' | node_modules/.bin/commitlint
+```
+
+We will get
+```
+⧗   input: foo: bar
+✖   type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
+
+✖   found 1 problems, 0 warnings
+ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+```
