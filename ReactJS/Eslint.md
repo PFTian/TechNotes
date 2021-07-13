@@ -1,4 +1,6 @@
-# Setup ESLint, Prettier, commitlint, pre-commit hooks with Husky v7 and lint-staged for a ReactJS Project with VSCode from scratch.
+# Setup ESLint, Prettier, commitlint, lint-staged and Husky v7 pre-commit and commit-msg git hooks for a ReactJS Project with VSCode Editor from scratch.
+
+### **_Goal: In this tutorial, we will check code quality (`ESLint`) and code format (`Prettier`) for the changes of staged files (`lint-staged`) before we push a commit with conventional commit format (`commitlint`)._**
 
 **ESLint -** [ESLint](https://eslint.org/docs/user-guide/getting-started) is a tool for identifying and reporting on patterns found in ECMAScript/Javascript code, with the goal of making code more consistent and avoiding bugs.
 
@@ -6,9 +8,15 @@
 
 **commitlint -** [commitlint](https://github.com/conventional-changelog/commitlint#what-is-commitlint) is a tool to check if your commit messages meet the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/)
 
-**Pre-commit -** [Pre-commit](https://pre-commit.com/) is a git hook that is useful for identifying issues before code submission. We use pre-commit here to check code format with `ESLint` and `Prettier` rules that we set in the configuration file.
+**lint-staged -** [lint-staged](https://github.com/okonet/lint-staged) is a tool that runs linters to make sure your staged file get formatted before commintting to your code base.
 
-**lint-staged -** [lint-staged](https://github.com/okonet/lint-staged) is a tool that running linters makes your staged file formatted before commintting to your code base.
+**Husky -** [Husky](https://typicode.github.io/husky/#/) is a tool that can help you easily to trigger the git hooks and run your scripts at each git hook stage.
+
+[Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) that we will use in this tutorial
+
+- **commit-msg** is a git hook that validates your project state or commit message before allowing a commit to go through.
+
+- **pre-commit** is a git hook that is useful for identifying issues before code submission. It even run before you type a commit message.
 
 ## ESLint
 
@@ -50,7 +58,7 @@ yarn add -g eslint
 
 I personally prefer to use local eslint, So I will use local eslint for the rest of the tutorial.
 
-### Config ESLint with Airbnb package
+### Config ESLint with Airbnb Package
 
 Creating a ESLint configuration file with running:
 
@@ -136,7 +144,7 @@ And there will be an `.eslintrc.json` file created at your project root folder.
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": [],
   "rules": {}
 }
 ```
@@ -209,19 +217,19 @@ node_modules/**
 
 #### Check specific file
 
-```
+```bash
 npx eslint yourTargetFile.js
 ```
 
 #### Fix errors automatically
 
-```
+```bash
 npx eslint yourTargetFile.js --fix
 ```
 
 #### Run ESLint with ignoring warnings
 
-```
+```bash
 npx eslint yourTargetFile.js --quiet
 ```
 
@@ -245,7 +253,7 @@ Open your VSCode Extensions and search `Prettier`, install the `Prettier - Code 
 
 ### Prettier Installation
 
-In yout project folder, install the dependencies about Prettier.
+In your project folder, install the dependencies about Prettier.
 
 ```bash
 npm install prettier eslint-config-prettier eslint-plugin-prettier --save-dev
@@ -271,20 +279,17 @@ Add `eslint-config-prettier` to `"extends"` of your `.eslintrc.json` file that y
 ```json
 {
   // ...
-  "extends": [
-    "airbnb",
-    "plugin:prettier/recommended"
-  ]
+  "extends": ["airbnb", "plugin:prettier/recommended"]
 }
 ```
 
 Since airbnb rules could have conflit rules with Prettier, for example, Airbnb javascript style guide asks
 
-> Always use double quotes (") for JSX attributes, but single quotes (') for all other JS. 
+> Always use double quotes (") for JSX attributes, but single quotes (') for all other JS.
 
-However, Prettier uses [double quotes](https://prettier.io/docs/en/options.html#quotes) by default even though it doesn't suggest. 
+However, Prettier uses [double quotes](https://prettier.io/docs/en/options.html#quotes) by default even though it doesn't suggest.
 
-For solving conflits, We need to create a `.prettierrc` file under your project folder with code:
+For solving this kind of conflits, We need to create a `.prettierrc` file under your project folder with code:
 
 ```json
 {
@@ -298,6 +303,7 @@ For solving conflits, We need to create a `.prettierrc` file under your project 
 ```
 
 ### Add Prettier ignore file
+
 We can create `.prettierignore` file under the poject root folder to contain the files that we want to ignore prettier check.
 
 ```
@@ -322,7 +328,7 @@ Open your `package.json` and add the below code block to your `scripts`.
 
 ## commitlint
 
-commintlint helps your team adhering to a commit convention. You can check [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for more details.
+`commintlint` helps your team adhering to a commit convention. You can check [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for more details.
 
 ### Install commitlint
 
@@ -342,11 +348,12 @@ module.exports = { extends: ['@commitlint/config-conventional'] };
 
 We install the commitlint locally, so run
 
-```
+```bash
 echo 'foo: bar' | node_modules/.bin/commitlint
 ```
 
 We will get
+
 ```
 ⧗   input: foo: bar
 ✖   type must be one of [build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test] [type-enum]
@@ -355,57 +362,13 @@ We will get
 ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
 ```
 
-## Husky v7 with Pre-commit
-
-[Husky](https://typicode.github.io/husky/#/?id=features) is a tool to easily trigger the git hooks and run our scripts at each stage of a commit.
-
-Here, we will use ESLint and Prettier to check code quality and code format for the changes at staged files before we commit these changes.
-
-### Install Husky v7
-Run the below command:
-
-```
-npm install husky --save-dev
-```
-
-### Enable Git hooks
-
-Run 
-
-```
-npx husky install
-```
-
-There will be a `.husky/` folder created where you can add your commands to hooks.
-
-For example, run
-
-```
-npx husky add .husky/pre-commit "npm test"
-```
-
-This command will create a `pre-commit` file in the `.husky` folder with content `npm test`. Each time when you push a new commit, it will the test at first, if the test failed, the whole commit will be automatically aborted.
-
-
-### Support commitlint with commit-msg git hook
-
-Add `commit-msg` file at your root directory with the below command:
-
-```
-npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
-```
- 
-`commit-msg` is a git hook that can validate your project state or commit message before allowing a commit to go through.
-
-Now if you commit your code again, you will find you can only commit your changes with following the conventional commit message format.
-
 ## lint-staged
 
-Since git hook will check all the files of the projects, with large project, this kind of checking will be time-consuming. For solving this problem, we can install `lint-staged` package to only check the files that are only changed and staged.
+Since git hook will check all the files of the projects, this kind of checking will be time-consuming for a large project,. For solving this problem, we can install `lint-staged` package to only check the files that are only changed and staged.
 
 ### Install lint-staged
 
-```
+```bash
 npm install lint-staged --save-dev
 ```
 
@@ -413,7 +376,7 @@ npm install lint-staged --save-dev
 
 Based on [lint-staged document](https://github.com/okonet/lint-staged), we can config lint-staged in `.lintstagedrc` file with `JSON` or `YAML` format.
 
-So let's create a file called `.lintstagedrc.json` at the root directory and add the below lint-staged command in it. You can check `lint-staged document` to figure out what command that lint-staged supports.
+Let's create a file called `.lintstagedrc.json` at the root directory and add the below lint-staged command in it. You can check `lint-staged document` to figure out what command that lint-staged supports.
 
 ```json
 {
@@ -422,9 +385,76 @@ So let's create a file called `.lintstagedrc.json` at the root directory and add
 }
 ```
 
+## Husky
+
+[Husky](https://typicode.github.io/husky/#/?id=features) is a tool to easily trigger the git hooks and run our scripts at each stage of a commit.
+
+### Install Husky
+
+*When I write this article, the latest version of Husky is `7`*
+
+Run the below command:
+
+```bash
+npm install husky --save-dev
+```
+
+*Optional: If you want to enable git hooks automatically after install, you can run:*
+
+```bash
+npm set-script prepare "husky install"
+```
+
+In the `pacakge.json` file, You should have:
+
+```json
+// package.json
+{
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
+```
+
+### Enable Git hooks
+
+Run the below code to enable git hooks
+
+```bash
+npx husky install
+```
+
+There will be a `.husky/` folder created in your project, where you can put your git hooks scripts.
+
+For example, run
+
+```bash
+npx husky add .husky/pre-commit "npm test"
+```
+
+This command will create a `pre-commit` file in the `.husky` folder with content `npm test`. Each time when you push a new commit, it will the test at first, if the test failed, the whole commit will be automatically aborted.
+
+### Support commitlint with commit-msg git hook
+
+Add `commit-msg` file at your root directory with the below command:
+
+```bash
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+
+`commit-msg` is a git hook that can validate your project state or commit message before allowing a commit to go through.
+
+Now if you commit your code again, you will find you can only commit your changes with following the conventional commit message format.
+
 ### Support lint-staged with pre-commit git hook
 
-Open your `package.json` file, add the below code to the `scripts`: 
+Add `pre-commit` file at your root directory with the below command:
+
+```bash
+npx husky add .husky/pre-commit 'npm run lint-staged'
+```
+
+Open your `package.json` file, add the below code to the `scripts`:
 
 ```json
 {
@@ -436,7 +466,7 @@ Open your `package.json` file, add the below code to the `scripts`:
 }
 ```
 
-Now go to `.husky/pre-commit` file, add the below code to the file 
+Now go to `.husky/pre-commit` file, add the below code to the file
 
 ```bash
 #!/bin/sh
@@ -445,13 +475,15 @@ Now go to `.husky/pre-commit` file, add the below code to the file
 npm run lint-staged
 ```
 
-
 ## Conclusion
+
 Now if you commit the changes of your project again,
 
 1. `ESLint` and `Prettier`
- will check your code quality and format of your changed files at `pre-commit` hook stage.
+   will check your code quality and format of your changed files at `pre-commit` hook stage.
 
 2. The tool `commitlint` will check if your commit message follow the `Conventional Commit Format` at `commit-msg` stage.
+
+*NOTE: pre-commit will be trigger at first and then commitlint get triggered*
 
 Either of above steps failed, the whole commit will be aborted, which means you won't commit your dirty code to the repository any more.
