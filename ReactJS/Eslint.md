@@ -239,6 +239,10 @@ We use `Prettier` to formate our code, cooperating with ESLinter. [This article]
 
 Since ESLint also contains stylistic rules which might conflict with Prettier, we can turn off these rules that conflict or are unnecessary with Prettier by using `eslint-config-pretter`
 
+### VSCode Prettier Plugin
+
+Open your VSCode Extensions and search `Prettier`, install the `Prettier - Code formatter` made by `Prettier`.
+
 ### Prettier Installation
 
 In yout project folder, install the dependencies about Prettier.
@@ -315,3 +319,5 @@ Open your `package.json` and add the below code block to your `scripts`.
   }
 }
 ```
+
+
