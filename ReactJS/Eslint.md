@@ -300,3 +300,18 @@ We can create `.prettierignore` file under the poject root folder to contain the
 node_modules/**
 ```
 
+### Add Prettier as npm command
+
+We can also format all of our code by using prettier with a command line.
+
+Open your `package.json` and add the below code block to your `scripts`.
+
+```json
+{
+  // ...
+  "scripts": {
+    // ...
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+  }
+}
+```
